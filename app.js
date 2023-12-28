@@ -114,7 +114,7 @@ _*Pesan Otomatis*_
 ID : ${idrndm} *${addmaster}*`
     } else if (payment == 'Datang ditempat') {
         var msgtouser = `Halo *${Nama}*, 
-terimakasih telah mendaftar *TOUCH#11*
+terimakasih telah mendaftar *TOUCH#13*
 Berikut adalah detail pembayaran kamu:
 
 ----------------------------------
