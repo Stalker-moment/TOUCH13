@@ -80,6 +80,9 @@ Berikut adalah detail pembayaran kamu:
 *Status Pembayaran:* Lunas
 ----------------------------------
 
+Silakan masuk ke grup whatsapp *TOUCH#13* untuk mendapatkan informasi lebih lanjut.
+https://chat.whatsapp.com/CTjFZsNQWvG7dx0yb6b7Yb
+
 Untuk informasi lebih lanjut, silahkan hubungi contact person berikut:
 
 *Tier:* wa.me/6282134580805
@@ -123,8 +126,11 @@ Berikut adalah detail pembayaran kamu:
 *Status Pembayaran:* Belum Lunas
 ----------------------------------
 
+Silakan masuk ke grup whatsapp *TOUCH#13* untuk mendapatkan informasi lebih lanjut.
+https://chat.whatsapp.com/CTjFZsNQWvG7dx0yb6b7Yb
+
 Pembayaran secara offline atau di tempat, dimohon untuk mengunjungi SMK SMTI Yogyakarta melalui gerbang depan.
-dilayani mulai hari Selasa (02/01/2024) hingga Selasa (20/02/2023).
+dilayani mulai hari Selasa (02/01/2024) hingga Selasa (18/02/2024).
 
 Senin - Kamis : 16.00 - 17.30
 Jumat : 15.00 - 17.30
@@ -185,23 +191,35 @@ ID : ${idrndm} *${addmaster}*`
 
 app.get('/notifyuser/:id', async(req, res) => {
     const id = req.params.id;
-    const data = JSON.parse(fs.readFileSync(databases));
-    const datauser = data.find((item) => item.id == id);
-    const msg = datauser.msg;
-    const number = datauser.number;
-    const urisend = base_api + 'sendmessage';
-    const params = {
-        number: number,
-        message: msg
+    try{
+        const data = JSON.parse(fs.readFileSync(databases));
+        const datauser = data.find((item) => item.id == id);
+        const msg = datauser.msg;
+        //jika tidak ditemukan 
+        if(!datauser) {
+            return res.status(404).json({code: 404, message: 'User not found'});
+        }
+        if(!msg) {
+            return res.status(404).json({code: 404, message: 'Message not found'});
+        }
+        const number = datauser.number;
+        const urisend = base_api + 'sendmessage';
+        const params = {
+            number: number,
+            message: msg
+        }
+        axios.post(urisend, params)
+            .then(function (response) {
+                console.log(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+        });
+        res.status(200).json({code: 200, message: 'Success send message to user'});
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({code: 500, message: 'Internal server error'});
     }
-    axios.post(urisend, params)
-        .then(function (response) {
-            console.log(response.data);
-        })
-        .catch(function (error) {
-            console.log(error);
-    });
-    res.status(200).json({code: 200, message: 'Success send message to user'});
 });
 
 
