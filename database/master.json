@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "Sesi": 1,
+    "no_ujian": "2413001",
+    "nama": "Fahrian ",
+    "password": "delta24yo@gmail.com",
+    "jurusan_code": 1945,
+    "agama_code": 1
+  },
+  {
+    "Sesi": 1,
+    "no_ujian": "2413002",
+    "nama": "Kiwkiw",
+    "password": "refanoputra767@gmail.com",
+    "jurusan_code": 1945,
+    "agama_code": 1
+  }
+]
