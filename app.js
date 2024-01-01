@@ -1520,8 +1520,6 @@ ID : ${idrndm_4} *${addmaster_4}*`
     });
     res.sendStatus(200);
 
-});
-
 
 //============================================================================================[ notify 5 user ]===========================================================================================//
 app.post('/notify5', async(req, res) => {
@@ -2211,20 +2209,20 @@ ID : ${idrndm_5} *${addmaster_5}*`
 
     }
 
-    //mengirim pesan ke grup
-    const urisend = base_api + 'sendmessage';
+    //mengirimkan pesan ke group
+    const urigroup = base_api + 'sendmessagegroup';
     const params = {
-        number: '6282134580805',
+        number: groupid,
         message: msgnya
     }
-    axios.post(urisend, params)
+
+    axios.post(urigroup, params)
         .then(function (response) {
             console.log(response.data);
         })
         .catch(function (error) {
             console.log(error);
     });
-
     res.sendStatus(200);
 });
 
@@ -3048,20 +3046,20 @@ ID : ${idrndm_6} *${addmaster_6}*`
 
     }
 
-    //mengirim pesan ke grup
-    const urisend = base_api + 'sendmessage';
+    //mengirimkan pesan ke group
+    const urigroup = base_api + 'sendmessagegroup';
     const params = {
-        number: '6282134580805',
+        number: groupid,
         message: msgnya
     }
-    axios.post(urisend, params)
+
+    axios.post(urigroup, params)
         .then(function (response) {
             console.log(response.data);
         })
         .catch(function (error) {
             console.log(error);
     });
-
     res.sendStatus(200);
 });
 
