@@ -2,18 +2,15 @@ const fs = require('fs');
 
 const databases = './database/userid.json';
 
-async function randomId() { // Generate random id (4 digits)
-    let id = Math.floor(Math.random() * 10000);
-    if (id < 1000) {
-        id = '0' + id;
-    } 
-    if (id < 100) {
-        id = '0' + id;
+async function randomId() { // Generate random id (6 digits)
+    const id = Math.floor(Math.random() * 1000000);
+    const data = JSON.parse(fs.readFileSync(databases));
+    const cek = data.find((data) => data.id === id);
+    if (cek) {
+        return randomId();
+    } else {
+        return id;
     }
-    if (id < 10) {
-        id = '0' + id;
-    }
-    return id;
 }
 
 // Create new user
