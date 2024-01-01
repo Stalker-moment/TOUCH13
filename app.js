@@ -22,6 +22,8 @@ const databases = './database/userid.json';
 const { createduser } = require('./function/createuser');
 const { giveId } = require('./function/createnoid');
 const { catat_database } = require('./function/writemaster');
+const { catat_lunas } = require('./function/lunasin');
+const { editStatusLunas } = require('./function/editlunas');
 
 app.post('/notify', async(req, res) => {
     console.log('Received new response:', req.body);
@@ -720,9 +722,11 @@ _*Pesan Otomatis*_
         const addmaster_3 = await catat_database(iduser_3, Nama_3, EmailAddres_3);
 
         var msgnya = `*[New Register]*
+*Time:* ${timeStamp}
+*Type:* 3 Orang
+*Harga:* Rp. 114.000 (38.000/Orang)
 
     _*Data Person 1*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_1}
 *Sekolah:* ${Smp_1}
 *No WA:* ${formattedNoWa_1} (${status_number_1})
@@ -735,13 +739,10 @@ _*Pesan Otomatis*_
 
     _*File Attachment*_
 *KIA:* ${KIA_1}
-*Bukti Pembayaran:* ${buktionline}
-*SpreadSheet :* ${spreadsheeturl}
 
 ID : ${idrndm_1} *${addmaster_1}*
 
     _*Data Person 2*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_2}
 *Sekolah:* ${Smp_2}
 *No WA:* ${formattedNoWa_2} (${status_number_2})
@@ -754,12 +755,10 @@ ID : ${idrndm_1} *${addmaster_1}*
 
     _*File Attachment*_
 *KIA:* ${KIA_2}
-*SpreadSheet :* ${spreadsheeturl}
 
 ID : ${idrndm_2} *${addmaster_2}*
     
     _*Data Person 3*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_3}
 *Sekolah:* ${Smp_3}
 *No WA:* ${formattedNoWa_3} (${status_number_3})
@@ -772,7 +771,8 @@ ID : ${idrndm_2} *${addmaster_2}*
 
     _*File Attachment*_
 *KIA:* ${KIA_3}
-*SpreadSheet :* ${spreadsheeturl}
+*Bukti Pembayaran:* ${buktionline}
+*SpreadSheet :* ${spreadsheeturl_3}
 
 ID : ${idrndm_3} *${addmaster_3}*`
     } else if (payment == 'Datang ditempat') {
@@ -876,9 +876,11 @@ _*Pesan Otomatis*_`;
         const addmaster_3 = await catat_database(iduser_3, Nama_3, EmailAddres_3);
 
         var msgnya = `*[New Register]*
+*Time:* ${timeStamp}
+*Type:* 3 Orang
+*Harga:* Rp. 114.000 (38.000/Orang)
 
     _*Data Person 1*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_1}
 *Sekolah:* ${Smp_1}
 *No WA:* ${formattedNoWa_1} (${status_number_1})
@@ -891,12 +893,10 @@ _*Pesan Otomatis*_`;
 
     _*File Attachment*_
 *KIA:* ${KIA_1}
-*SpreadSheet :* ${spreadsheeturl}
 
 ID : ${idrndm_1} *${addmaster_1}*
     
         _*Data Person 2*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_2}
 *Sekolah:* ${Smp_2}
 *No WA:* ${formattedNoWa_2} (${status_number_2})
@@ -909,12 +909,10 @@ ID : ${idrndm_1} *${addmaster_1}*
 
     _*File Attachment*_
 *KIA:* ${KIA_2}
-*SpreadSheet :* ${spreadsheeturl}
 
 ID : ${idrndm_2} *${addmaster_2}*
 
     _*Data Person 3*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_3}
 *Sekolah:* ${Smp_3}
 *No WA:* ${formattedNoWa_3} (${status_number_3})
@@ -927,7 +925,7 @@ ID : ${idrndm_2} *${addmaster_2}*
 
     _*File Attachment*_
 *KIA:* ${KIA_3}
-*SpreadSheet :* ${spreadsheeturl}
+*SpreadSheet :* ${spreadsheeturl_3}
 
 ID : ${idrndm_3} *${addmaster_3}*`
 
@@ -1232,9 +1230,11 @@ _*Pesan Otomatis*_
         const addmaster_4 = await catat_database(iduser_4, Nama_4, EmailAddres_4);
 
         var msgnya = `*[New Register]*
+*Time:* ${timeStamp}
+*Type:* 4 Orang
+*Harga:* Rp. 148.000 (37.000/Orang)
 
     _*Data Person 1*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_1}
 *Sekolah:* ${Smp_1}
 *No WA:* ${formattedNoWa_1} (${status_number_1})
@@ -1247,13 +1247,10 @@ _*Pesan Otomatis*_
 
     _*File Attachment*_
 *KIA:* ${KIA_1}
-*Bukti Pembayaran:* ${buktionline}
-*SpreadSheet :* ${spreadsheeturl}
 
 ID : ${idrndm_1} *${addmaster_1}*
     
         _*Data Person 2*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_2}
 *Sekolah:* ${Smp_2}
 *No WA:* ${formattedNoWa_2} (${status_number_2})
@@ -1266,12 +1263,10 @@ ID : ${idrndm_1} *${addmaster_1}*
 
     _*File Attachment*_
 *KIA:* ${KIA_2}
-*SpreadSheet :* ${spreadsheeturl}
 
 ID : ${idrndm_2} *${addmaster_2}*
     
         _*Data Person 3*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_3}
 *Sekolah:* ${Smp_3}
 *No WA:* ${formattedNoWa_3} (${status_number_3})
@@ -1284,12 +1279,10 @@ ID : ${idrndm_2} *${addmaster_2}*
 
     _*File Attachment*_
 *KIA:* ${KIA_3}
-*SpreadSheet :* ${spreadsheeturl}
 
 ID : ${idrndm_3} *${addmaster_3}*
 
     _*Data Person 4*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_4}
 *Sekolah:* ${Smp_4}
 *No WA:* ${formattedNoWa_4} (${status_number_4})
@@ -1302,7 +1295,8 @@ ID : ${idrndm_3} *${addmaster_3}*
 
     _*File Attachment*_
 *KIA:* ${KIA_4}
-*SpreadSheet :* ${spreadsheeturl}
+*Bukti Pembayaran:* ${buktionline}
+*SpreadSheet :* ${spreadsheeturl_4}
 
 ID : ${idrndm_4} *${addmaster_4}*`
     } else if (payment == 'Datang ditempat') {
@@ -1439,8 +1433,11 @@ _*Pesan Otomatis*_`;
         const addmaster_4 = await catat_database(iduser_4, Nama_4, EmailAddres_4);
 
     var msgnya = `*[New Register]*
-    _*Data Person 1*_
 *Time:* ${timeStamp}
+*Type:* 4 Orang
+*Harga:* Rp. 148.000 (37.000/Orang)
+
+    _*Data Person 1*_
 *Nama:* ${Nama_1}
 *Sekolah:* ${Smp_1}
 *No WA:* ${formattedNoWa_1} (${status_number_1})
@@ -1453,13 +1450,10 @@ _*Pesan Otomatis*_`;
 
     _*File Attachment*_
 *KIA:* ${KIA_1}
-*Bukti Pembayaran:* ${buktionline}
-*SpreadSheet :* ${spreadsheeturl}
 
 ID : ${idrndm_1} *${addmaster_1}*
     
         _*Data Person 2*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_2}
 *Sekolah:* ${Smp_2}
 *No WA:* ${formattedNoWa_2} (${status_number_2})
@@ -1472,12 +1466,10 @@ ID : ${idrndm_1} *${addmaster_1}*
 
     _*File Attachment*_
 *KIA:* ${KIA_2}
-*SpreadSheet :* ${spreadsheeturl}
 
 ID : ${idrndm_2} *${addmaster_2}*
     
         _*Data Person 3*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_3}
 *Sekolah:* ${Smp_3}
 *No WA:* ${formattedNoWa_3} (${status_number_3})
@@ -1490,12 +1482,10 @@ ID : ${idrndm_2} *${addmaster_2}*
 
     _*File Attachment*_
 *KIA:* ${KIA_3}
-*SpreadSheet :* ${spreadsheeturl}
 
 ID : ${idrndm_3} *${addmaster_3}*
 
     _*Data Person 4*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_4}
 *Sekolah:* ${Smp_4}
 *No WA:* ${formattedNoWa_4} (${status_number_4})
@@ -1508,7 +1498,7 @@ ID : ${idrndm_3} *${addmaster_3}*
 
     _*File Attachment*_
 *KIA:* ${KIA_4}
-*SpreadSheet :* ${spreadsheeturl}
+*SpreadSheet :* ${spreadsheeturl_4}
 
 ID : ${idrndm_4} *${addmaster_4}*`
 
@@ -1882,8 +1872,11 @@ _*Pesan Otomatis*_
         const addmaster_5 = await catat_database(iduser_5, Nama_5, EmailAddres_5);
 
         var msgnya = `*[New Register]*
-    _*Data Person 1*_
 *Time:* ${timeStamp}
+*Type:* 5 Orang
+*Harga:* Rp. 180.000 (36.000/Orang)
+
+    _*Data Person 1*_
 *Nama:* ${Nama_1}
 *Sekolah:* ${Smp_1}
 *No WA:* ${formattedNoWa_1} (${status_number_1})
@@ -1896,13 +1889,10 @@ _*Pesan Otomatis*_
 
     _*File Attachment*_
 *KIA:* ${KIA_1}
-*Bukti Pembayaran:* ${buktionline}
-*SpreadSheet :* ${spreadsheeturl}
 
 ID : ${idrndm_1} *${addmaster_1}*
 
     _*Data Person 2*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_2}
 *Sekolah:* ${Smp_2}
 *No WA:* ${formattedNoWa_2} (${status_number_2})
@@ -1915,12 +1905,10 @@ ID : ${idrndm_1} *${addmaster_1}*
 
     _*File Attachment*_
 *KIA:* ${KIA_2}
-*SpreadSheet :* ${spreadsheeturl}
 
 ID : ${idrndm_2} *${addmaster_2}*
 
     _*Data Person 3*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_3}
 *Sekolah:* ${Smp_3}
 *No WA:* ${formattedNoWa_3} (${status_number_3})
@@ -1933,12 +1921,10 @@ ID : ${idrndm_2} *${addmaster_2}*
 
     _*File Attachment*_
 *KIA:* ${KIA_3}
-*SpreadSheet :* ${spreadsheeturl}
 
 ID : ${idrndm_3} *${addmaster_3}*
     
     _*Data Person 4*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_4}
 *Sekolah:* ${Smp_4}
 *No WA:* ${formattedNoWa_4} (${status_number_4})
@@ -1951,12 +1937,10 @@ ID : ${idrndm_3} *${addmaster_3}*
 
     _*File Attachment*_
 *KIA:* ${KIA_4}
-*SpreadSheet :* ${spreadsheeturl}
 
 ID : ${idrndm_4} *${addmaster_4}*
 
     _*Data Person 5*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_5}
 *Sekolah:* ${Smp_5}
 *No WA:* ${formattedNoWa_5} (${status_number_5})
@@ -1969,7 +1953,8 @@ ID : ${idrndm_4} *${addmaster_4}*
 
     _*File Attachment*_
 *KIA:* ${KIA_5}
-*SpreadSheet :* ${spreadsheeturl}
+*Bukti Pembayaran:* ${buktionline}
+*SpreadSheet :* ${spreadsheeturl_5}
 
 ID : ${idrndm_5} *${addmaster_5}*`
     } else if (payment == 'Datang ditempat') {
@@ -2139,8 +2124,11 @@ _*Pesan Otomatis*_`;
         const addmaster_5 = await catat_database(iduser_5, Nama_5, EmailAddres_5);
 
         var msgnya = `*[New Register]*
-    _*Data Person 1*_
 *Time:* ${timeStamp}
+*Type:* 5 Orang
+*Harga:* Rp. 180.000 (36.000/Orang)
+
+    _*Data Person 1*_
 *Nama:* ${Nama_1}
 *Sekolah:* ${Smp_1}
 *No WA:* ${formattedNoWa_1} (${status_number_1})
@@ -2153,13 +2141,10 @@ _*Pesan Otomatis*_`;
 
     _*File Attachment*_
 *KIA:* ${KIA_1}
-*Bukti Pembayaran:* ${buktionline}
-*SpreadSheet :* ${spreadsheeturl}
 
 ID : ${idrndm_1} *${addmaster_1}*
 
     _*Data Person 2*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_2}
 *Sekolah:* ${Smp_2}
 *No WA:* ${formattedNoWa_2} (${status_number_2})
@@ -2172,12 +2157,10 @@ ID : ${idrndm_1} *${addmaster_1}*
 
     _*File Attachment*_
 *KIA:* ${KIA_2}
-*SpreadSheet :* ${spreadsheeturl}
 
 ID : ${idrndm_2} *${addmaster_2}*
 
     _*Data Person 3*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_3}
 *Sekolah:* ${Smp_3}
 *No WA:* ${formattedNoWa_3} (${status_number_3})
@@ -2190,12 +2173,10 @@ ID : ${idrndm_2} *${addmaster_2}*
 
     _*File Attachment*_
 *KIA:* ${KIA_3}
-*SpreadSheet :* ${spreadsheeturl}
 
 ID : ${idrndm_3} *${addmaster_3}*
     
     _*Data Person 4*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_4}
 *Sekolah:* ${Smp_4}
 *No WA:* ${formattedNoWa_4} (${status_number_4})
@@ -2208,12 +2189,10 @@ ID : ${idrndm_3} *${addmaster_3}*
 
     _*File Attachment*_
 *KIA:* ${KIA_4}
-*SpreadSheet :* ${spreadsheeturl}
 
 ID : ${idrndm_4} *${addmaster_4}*
 
     _*Data Person 5*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_5}
 *Sekolah:* ${Smp_5}
 *No WA:* ${formattedNoWa_5} (${status_number_5})
@@ -2226,7 +2205,7 @@ ID : ${idrndm_4} *${addmaster_4}*
 
     _*File Attachment*_
 *KIA:* ${KIA_5}
-*SpreadSheet :* ${spreadsheeturl}
+*SpreadSheet :* ${spreadsheeturl_5}
 
 ID : ${idrndm_5} *${addmaster_5}*`
 
@@ -2665,8 +2644,11 @@ _*Pesan Otomatis*_
         const addmaster_6 = await catat_database(iduser_6, Nama_6, EmailAddres_6);
 
         var msgnya = `*[New Register]*
-    _*Data Person 1*_
 *Time:* ${timeStamp}
+*Type:* 6 Orang
+*Harga:* Rp. 210.000 (35.000/Orang)
+
+    _*Data Person 1*_
 *Nama:* ${Nama_1}
 *Sekolah:* ${Smp_1}
 *No WA:* ${formattedNoWa_1} (${status_number_1})
@@ -2679,13 +2661,10 @@ _*Pesan Otomatis*_
 
     _*File Attachment*_
 *KIA:* ${KIA_1}
-*Bukti Pembayaran:* ${buktionline}
-*SpreadSheet :* ${spreadsheeturl}
 
 ID : ${idrndm_1} *${addmaster_1}*
 
     _*Data Person 2*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_2}
 *Sekolah:* ${Smp_2}
 *No WA:* ${formattedNoWa_2} (${status_number_2})
@@ -2698,12 +2677,10 @@ ID : ${idrndm_1} *${addmaster_1}*
 
     _*File Attachment*_
 *KIA:* ${KIA_2}
-*SpreadSheet :* ${spreadsheeturl}
 
 ID : ${idrndm_2} *${addmaster_2}*
 
     _*Data Person 3*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_3}
 *Sekolah:* ${Smp_3}
 *No WA:* ${formattedNoWa_3} (${status_number_3})
@@ -2716,12 +2693,10 @@ ID : ${idrndm_2} *${addmaster_2}*
 
     _*File Attachment*_
 *KIA:* ${KIA_3}
-*SpreadSheet :* ${spreadsheeturl}
 
 ID : ${idrndm_3} *${addmaster_3}*
     
     _*Data Person 4*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_4}
 *Sekolah:* ${Smp_4}
 *No WA:* ${formattedNoWa_4} (${status_number_4})
@@ -2734,12 +2709,10 @@ ID : ${idrndm_3} *${addmaster_3}*
 
     _*File Attachment*_
 *KIA:* ${KIA_4}
-*SpreadSheet :* ${spreadsheeturl}
 
 ID : ${idrndm_4} *${addmaster_4}*
 
     _*Data Person 5*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_5}
 *Sekolah:* ${Smp_5}
 *No WA:* ${formattedNoWa_5} (${status_number_5})
@@ -2752,12 +2725,10 @@ ID : ${idrndm_4} *${addmaster_4}*
 
     _*File Attachment*_
 *KIA:* ${KIA_5}
-*SpreadSheet :* ${spreadsheeturl}
 
 ID : ${idrndm_5} *${addmaster_5}*
 
     _*Data Person 6*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_6}
 *Sekolah:* ${Smp_6}
 *No WA:* ${formattedNoWa_6} (${status_number_6})
@@ -2770,7 +2741,8 @@ ID : ${idrndm_5} *${addmaster_5}*
 
     _*File Attachment*_ 
 *KIA:* ${KIA_6}
-*SpreadSheet :* ${spreadsheeturl}
+*Bukti Pembayaran:* ${buktionline}
+*SpreadSheet :* ${spreadsheeturl_6}
 
 ID : ${idrndm_6} *${addmaster_6}*`
     } else if (payment == 'Datang ditempat') {
@@ -2973,8 +2945,11 @@ _*Pesan Otomatis*_`;
         const addmaster_6 = await catat_database(iduser_6, Nama_6, EmailAddres_6);
 
         var msgnya = `*[New Register]*
-    _*Data Person 1*_
 *Time:* ${timeStamp}
+*Tipe:* 6 Orang
+*Harga:* Rp. 210.000 (35.000/Orang)
+
+    _*Data Person 1*_
 *Nama:* ${Nama_1}
 *Sekolah:* ${Smp_1}
 *No WA:* ${formattedNoWa_1} (${status_number_1})
@@ -2987,13 +2962,10 @@ _*Pesan Otomatis*_`;
 
     _*File Attachment*_
 *KIA:* ${KIA_1}
-*Bukti Pembayaran:* ${buktionline}
-*SpreadSheet :* ${spreadsheeturl}
 
 ID : ${idrndm_1} *${addmaster_1}*
 
     _*Data Person 2*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_2}
 *Sekolah:* ${Smp_2}
 *No WA:* ${formattedNoWa_2} (${status_number_2})
@@ -3006,12 +2978,10 @@ ID : ${idrndm_1} *${addmaster_1}*
 
     _*File Attachment*_
 *KIA:* ${KIA_2}
-*SpreadSheet :* ${spreadsheeturl}
 
 ID : ${idrndm_2} *${addmaster_2}*
 
     _*Data Person 3*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_3}
 *Sekolah:* ${Smp_3}
 *No WA:* ${formattedNoWa_3} (${status_number_3})
@@ -3024,12 +2994,10 @@ ID : ${idrndm_2} *${addmaster_2}*
 
     _*File Attachment*_
 *KIA:* ${KIA_3}
-*SpreadSheet :* ${spreadsheeturl}
 
 ID : ${idrndm_3} *${addmaster_3}*
     
     _*Data Person 4*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_4}
 *Sekolah:* ${Smp_4}
 *No WA:* ${formattedNoWa_4} (${status_number_4})
@@ -3042,12 +3010,10 @@ ID : ${idrndm_3} *${addmaster_3}*
 
     _*File Attachment*_
 *KIA:* ${KIA_4}
-*SpreadSheet :* ${spreadsheeturl}
 
 ID : ${idrndm_4} *${addmaster_4}*
 
     _*Data Person 5*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_5}
 *Sekolah:* ${Smp_5}
 *No WA:* ${formattedNoWa_5} (${status_number_5})
@@ -3060,12 +3026,10 @@ ID : ${idrndm_4} *${addmaster_4}*
 
     _*File Attachment*_
 *KIA:* ${KIA_5}
-*SpreadSheet :* ${spreadsheeturl}
 
 ID : ${idrndm_5} *${addmaster_5}*
 
     _*Data Person 6*_
-*Time:* ${timeStamp}
 *Nama:* ${Nama_6}
 *Sekolah:* ${Smp_6}
 *No WA:* ${formattedNoWa_6} (${status_number_6})
@@ -3078,7 +3042,7 @@ ID : ${idrndm_5} *${addmaster_5}*
 
     _*File Attachment*_ 
 *KIA:* ${KIA_6}
-*SpreadSheet :* ${spreadsheeturl}
+*SpreadSheet :* ${spreadsheeturl_6}
 
 ID : ${idrndm_6} *${addmaster_6}*`
 
@@ -3133,6 +3097,34 @@ app.get('/notifyuser/:id', async(req, res) => {
         console.log(err);
         res.status(500).json({code: 500, message: 'Internal server error'});
     }
+});
+
+app.get('/lunas/:id', async(req, res) => {
+    const id = req.params.id;
+    const status = req.query.status;
+    
+    //edit lunas
+    const editlunas = await editStatusLunas(id, status);
+    if(editlunas) {
+        res.status(200).json({code: 200, message: 'Success edit status lunas'});
+    } else {
+        res.status(400).json({code: 400, message: 'Failed edit status lunas'});
+    }
+
+    //mengirimkan pesan ke admin
+    
+    const params = {
+        number: number,
+        message: msg
+    }
+    axios.post(urisend, params)
+        .then(function (response) {
+            console.log(response.data);
+        })
+        .catch(function (error) {
+            console.log(error);
+    });
+    res.status(200).json({code: 200, message: 'Success send message to admin'});
 });
 
 
