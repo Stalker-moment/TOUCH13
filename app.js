@@ -24,6 +24,9 @@ const { giveId } = require('./function/createnoid');
 const { catat_database } = require('./function/writemaster');
 const { catat_lunas } = require('./function/lunasin');
 const { editStatusLunas } = require('./function/editlunas');
+const fillReceipt = require('./function/kwitansi');
+const rotateImage = require('./function/rotateimage');
+const imgtopdf = require('./function/imgtopdf');
 
 app.post('/notify', async(req, res) => {
     console.log('Received new response:', req.body);
@@ -3101,20 +3104,29 @@ app.get('/notifyuser/:id', async(req, res) => {
     }
 });
 
-app.get('/lunas/:id', async(req, res) => {
-    const id = req.params.id;
-    const status = req.query.status;
-    
-    //edit lunas
-    const editlunas = await editStatusLunas(id, status);
-    if(editlunas) {
-        res.status(200).json({code: 200, message: 'Success edit status lunas'});
-    } else {
-        res.status(400).json({code: 400, message: 'Failed edit status lunas'});
+app.get('/acc/:noujian', async(req, res) => {
+    const noujian = req.params.noujian;
+    const id = req.query.id;
+
+    //mecari data user berdasarkan noujian
+    const databasenya = `.database/master.json`;
+    const data = JSON.parse(fs.readFileSync(databasenya));
+    const datauser = data.find((item) => item.id == noujian);
+
+    //jika tidak ditemukan
+    if(!datauser) {
+        return res.status(404).json({code: 404, message: 'User not found'});
     }
 
-    //mengirimkan pesan ke admin
-    
+    const msg = `Berikut account kamu untuk mengakses ke website TOUCH#13 :
+
+*Nama:* ${datauser.nama}
+*No. ujian:* ${noujian}
+*Password:* ${datauser.password}
+
+Nb: Jangan bagikan account ini kepada siapapun, karena account ini bersifat rahasia.
+`
+
     const params = {
         number: number,
         message: msg
@@ -3126,8 +3138,73 @@ app.get('/lunas/:id', async(req, res) => {
         .catch(function (error) {
             console.log(error);
     });
-    res.status(200).json({code: 200, message: 'Success send message to admin'});
+    res.status(200).json({code: 200, message: 'Success send message to member'});
 });
 
+app.get('/lunas/:noujian', async(req, res) => {
+    const noujian = req.params.noujian;
+    const id = req.query.id;
+    const payment = req.query.payment;
+    const type = req.query.type;
+
+    //mecari data user berdasarkan noujian
+    const databasenya = `.database/master.json`;
+    const data = JSON.parse(fs.readFileSync(databasenya));
+    const datauser = data.find((item) => item.no_ujian == noujian);
+
+    //jika tidak ditemukan
+    if(!datauser) {
+        return res.status(404).json({code: 404, message: 'User not found'});
+    }
+
+    const no_ujian = datauser.no_ujian;
+    const nama = datauser.nama;
+    const password = datauser.password;
+    
+    //hilangkan angka 2413
+    const nomor = no_ujian.slice(4);
+
+    if(payment == '1') { //QRIS
+        var msg_kwitansi = `Halo *${nama}* Berikut adalah kwitansi pembayaran kamu
+
+Simpan baik-baik kwitansi ini ditunjukkan saat hari H tryout, sebagai bukti pembayaran.
+
+Berikut adalah account kamu untuk mengakses ke website TOUCH#13 :
+
+*Nama:* ${nama}
+*No. ujian:* ${no_ujian}
+*Password:* ${password}
+
+*Nb*: Jangan bagikan account ini kepada siapapun, karena account ini bersifat rahasia.
+`
+        if (type == '1') { //1 orang
+            fillReceipt(nomor, nama, 'Empat Puluh Ribu Rupiah', 'Rp 40.000');
+        } else if (type == '2') { //2 orang
+            fillReceipt(nomor, nama, 'Tiga Puluh Sembilan Ribu Rupiah', 'Rp 39.000');
+        } else if(type == '3') { 
+            fillReceipt(nomor, nama, 'Tiga Puluh Delapan Ribu Rupiah', 'Rp 38.000');
+        } else if(type == '4'){
+            fillReceipt(nomor, nama, 'Tiga Puluh Tujuh Ribu Rupiah', 'Rp 37.000');
+        } else if(type == '5'){
+            fillReceipt(nomor, nama, 'Tiga Puluh Enam Ribu Rupiah', 'Rp 36.000');
+        } else if(type == '6'){
+            fillReceipt(nomor, nama, 'Tiga Puluh Lima Ribu Rupiah', 'Rp 35.000');
+        }
+    } else if(payment == '2') { //Offline
+        var msg_kwitansi = `Halo *${nama}* terimakasih telah melunasi pembayaran kamu.
+
+Harap simpan bukti pembayaran sebagai bukti pembayaran
+Butki pembayaran akan ditunjukkan saat hari H tryout.
+
+Berikut adalah account kamu untuk mengakses ke website TOUCH#13 :
+
+*Nama:* ${nama}
+*No. ujian:* ${no_ujian}
+*Password:* ${password}
+
+*Nb:* Jangan bagikan account ini kepada siapapun, karena account ini bersifat rahasia.
+`
+    }
+});
 
 app.listen(3001, () => console.log('Server is listening on port 3001'));
