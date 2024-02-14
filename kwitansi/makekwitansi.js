@@ -25,7 +25,7 @@ function potongNama(nama) {
     return nama;
 }
 
-async function fillReceipt(number, nama, amountInWords, amount) {
+async function fillReceipt(number, nama, amountInWords, amount, tanggal) {
     const receivedFrom = potongNama(nama);
 
     const image = await loadImage(imagePath);
@@ -36,7 +36,7 @@ async function fillReceipt(number, nama, amountInWords, amount) {
 
     context.font = '40px Comic Sans MS';
     context.fillText(number, 402, 95);
-    context.fillText('18/1/2024', 1349, 95);
+    context.fillText(tanggal, 1349, 95);
     context.fillText(receivedFrom, 639, 145);
     context.fillText(amountInWords, 641, 212);
     context.fillText(forPayment, 648, 268);
@@ -92,7 +92,8 @@ async function imgtopdf(path, output) {
 }
 
 //eksekusi
-const infokan = fillReceipt('088', 'Aisha Bena Rizkika ', 'Empat Puluh Ribu Rupiah', '40.000')
+// use date untuk tanggal otomatis (hari ini)
+const infokan = fillReceipt('148', `Prananda Surya Airlangga `, 'Empat Puluh Ribu Rupiah', '40.000', `10/2/2024`)
     .then((namafile) => {
         console.log('namafile: ', namafile);
         const namanext = namafile.replace('.jpg', 'rotate.jpg');
